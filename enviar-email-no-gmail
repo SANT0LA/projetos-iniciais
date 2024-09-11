@@ -1,0 +1,19 @@
+def enviar_email():  
+    corpo_email ="Mensagem que vai ser enviada no corpo de email"
+
+    msg = email.message.Message()
+    msg['Subject'] = "Testando"
+    msg['From'] = 'santolaprojeto1@gmail.com'
+    msg['To'] = 'santolaprojeto1@gmail.com'
+    #colocar senha abaixo
+    senha = '' 
+    msg.add_header('Content-Type', 'text/html')
+    msg.set_payload(corpo_email )
+
+    s = smtplib.SMTP('smtp.gmail.com: 587')
+    s.starttls()
+    # Login Credentials for sending the mail
+    s.login(msg['From'],senha)
+    s.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
+    print('Email enviado')
+enviar_email()
